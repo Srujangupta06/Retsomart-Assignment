@@ -7,7 +7,6 @@ import { addTask } from "../store/slices/todoSlice";
 import { IoIosArrowRoundBack } from "react-icons/io";
 
 const Form = (props) => {
-
   const { type, taskInfo } = props;
 
   const dispatch = useDispatch();
@@ -22,6 +21,9 @@ const Form = (props) => {
     e.preventDefault();
 
     // Validation
+    if (title.trim().length < 8) {
+      setError("Title must be at least 8 characters long");
+    }
     if (title.trim().length > 50) {
       setError("Title cannot exceed 50 characters");
     }
@@ -35,7 +37,7 @@ const Form = (props) => {
       }
     }
 
-    if (!error) {
+    if (error === null) {
       if (type === "add") {
         createTask();
       } else if (type === "edit") {
@@ -67,28 +69,16 @@ const Form = (props) => {
           duration: 2000,
         });
 
-        // Clearing All Fields to default
-
         dispatch(addTask(data?.data));
+        // Clearing All Fields to default
         setTitle("");
         setDescription("");
         setStatus("todo");
         setDueDate(taskInfo.dueDate);
-        
       } else {
         const data = await response.json();
-
-        toast.error(data?.message || "Failed to create task", {
-          icon: "❌",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-          duration: 5000,
-        });
+        setError(data?.message || "Failed to create task");
       }
-
     } catch (e) {
       console.log(e);
     }
@@ -118,15 +108,7 @@ const Form = (props) => {
         });
       } else {
         const data = await response.json();
-        toast.error(data?.message || "Failed to update task", {
-          icon: "❌",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-          duration: 5000,
-        });
+        setError(data?.message || "Failed to Update task");
       }
     } catch (e) {
       console.log(e);
@@ -136,7 +118,7 @@ const Form = (props) => {
   return (
     <>
       <form
-        className="border border-gray-200 shadow-md w-[50%] p-6 rounded-md"
+        className="border border-gray-200 shadow-md w-[90%]md:w-[70%] lg:w-[50%] p-6 rounded-md"
         onSubmit={onHandleFormSubmit}
         autoComplete="off"
       >
@@ -244,7 +226,6 @@ const Form = (props) => {
         <IoIosArrowRoundBack className="inline-block text-xl mr-1" />
         <span>Back to Home</span>
       </Link>
-      
     </>
   );
 };

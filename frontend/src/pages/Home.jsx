@@ -11,18 +11,15 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const taskList = useSelector((store) => store.task);
- 
 
   // fetch tasks
   const fetchTasks = async () => {
     try {
-      let url = `${
-        import.meta.env.VITE_BACKEND_URL
-      }/tasks?status=${status}`;
+      let url = `${import.meta.env.VITE_BACKEND_URL}/tasks?status=${status}`;
       if (status === "all") {
         url = `${import.meta.env.VITE_BACKEND_URL}/tasks`;
       }
-      
+
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
@@ -33,10 +30,9 @@ const Home = () => {
     }
   };
 
-  
   useEffect(() => {
     fetchTasks();
-  }, [status,sortBy]);
+  }, [status, sortBy]);
 
   return (
     <div className="min-h-screen flex flex-col items-center py-10 md:py-16 lg:py-16">
@@ -45,7 +41,7 @@ const Home = () => {
           Manage Your Tasks
         </h1>
         {/*Filter Container */}
-        <div className="flex flex-row items-center justify-between mb-6">
+        <div className="flex flex-row items-center justify-between mb-6 flex-wrap">
           <button
             className="flex flex-row items-center gap-2 cursor-pointer px-4 py-1.5 text-sm bg-blue-500 text-white rounded-sm"
             onClick={() => navigate("/add")}
@@ -53,7 +49,7 @@ const Home = () => {
             <IoAddCircleOutline className="inline-block text-lg" />
             <span> Add Task</span>
           </button>
-          <div className="flex flex-row items-center gap-6">
+          <div className="flex flex-row items-center gap-6 ">
             <div>
               <label
                 htmlFor="sortBy"
@@ -62,7 +58,7 @@ const Home = () => {
                 Sort By:
               </label>
               <select
-                className="border border-gray-300 rounded-md px-3 py-2 text-sm bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="border border-gray-300 rounded-md px-3 py-2 text-sm bg-white shadow-sm outline-none sm:w-auto;"
                 onChange={(e) => setSortBy(e.target.value)}
               >
                 <option value="createdAt">Date</option>

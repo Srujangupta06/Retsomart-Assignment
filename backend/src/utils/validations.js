@@ -7,6 +7,9 @@ const validateTodoCreation = (data) => {
   if (!title || title.trim() === "") {
     throw new Error("Title is required and cannot be empty");
   }
+  if (title.trim().length < 8) {
+    throw new Error("Title must be at least 8 characters long");
+  }
 
   if (title.trim().length > 50) {
     throw new Error("Title cannot exceed 50 characters");
@@ -39,6 +42,9 @@ const validateTodoUpdate = (data, res) => {
     throw new Error("Title is required and cannot be empty");
   }
 
+  if (title.trim().length < 8) {
+    throw new Error("Title must be at least 8 characters long");
+  }
   if (title.trim().length > 50) {
     throw new Error("Title cannot exceed 50 characters");
   }
