@@ -10,6 +10,7 @@ const getAllTodos = async (req, res) => {
   try {
     const todoService = new TodoService();
     const {status} = req.query;
+    
     // Fetch All Todos
     const todoList = await todoService.getAllTodos(status);
 
@@ -17,6 +18,7 @@ const getAllTodos = async (req, res) => {
       message: "Todos Fetched Successfully",
       data: todoList,
     });
+
   } catch (e) {
     return res.status(500).json({
       message: "Internal Server Error",
@@ -58,6 +60,7 @@ const createTodo = async (req, res) => {
     const todoService = new TodoService();
 
     const { title, dueDate, description } = req.body;
+
     // Validate the Req Body
     validateTodoCreation(req.body);
 
@@ -111,6 +114,7 @@ const updateTodoById = async (req, res) => {
 
     // Validate the Req Body;
     validateTodoUpdate(req.body);
+
     // Check Allowed to Modify or not
     const isAllowed = isEditAllowed(req.body);
     if (!isAllowed) {
@@ -119,8 +123,10 @@ const updateTodoById = async (req, res) => {
         error: "BAD_REQUEST",
       });
     }
+
     // Update the Todo
     const updatedTodo = await todoService.updateTodoById(id, req.body);
+
     res.json({
       message: "Todo Updated Successfully",
       data: updatedTodo,
@@ -152,6 +158,7 @@ const deleteTodo = async (req, res) => {
     return res.status(204).json({
       message: "Todo Deleted Successfully",
     });
+    
   } catch (e) {
     return res.status(500).json({
       message: "Internal Server Error",

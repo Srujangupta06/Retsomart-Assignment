@@ -5,9 +5,13 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addTask } from "../store/slices/todoSlice";
 import { IoIosArrowRoundBack } from "react-icons/io";
+
 const Form = (props) => {
+
   const { type, taskInfo } = props;
+
   const dispatch = useDispatch();
+
   const [error, setError] = useState(null);
   const [title, setTitle] = useState(taskInfo?.title || "");
   const [description, setDescription] = useState(taskInfo?.description || "");
@@ -40,6 +44,7 @@ const Form = (props) => {
     }
   };
 
+  // To Create a Task
   const createTask = async () => {
     try {
       const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/tasks`;
@@ -61,14 +66,18 @@ const Form = (props) => {
           },
           duration: 2000,
         });
+
+        // Clearing All Fields to default
+
         dispatch(addTask(data?.data));
         setTitle("");
         setDescription("");
         setStatus("todo");
         setDueDate(taskInfo.dueDate);
-        // Redirect to home page or clear form
+        
       } else {
         const data = await response.json();
+
         toast.error(data?.message || "Failed to create task", {
           icon: "❌",
           style: {
@@ -79,11 +88,13 @@ const Form = (props) => {
           duration: 5000,
         });
       }
+
     } catch (e) {
       console.log(e);
     }
   };
 
+  // To Update the Existing Task
   const updateTask = async () => {
     try {
       const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/tasks/${taskInfo.id}`;
@@ -129,6 +140,7 @@ const Form = (props) => {
         onSubmit={onHandleFormSubmit}
         autoComplete="off"
       >
+        {/*Title */}
         <div className="mb-4">
           <label
             htmlFor="taskTitle"
@@ -148,6 +160,7 @@ const Form = (props) => {
             className="w-full px-3 py-1.5 border border-gray-300 rounded-sm"
           />
         </div>
+        {/*Description */}
         <div className="mb-4">
           <label
             htmlFor="taskDescription"
@@ -167,6 +180,7 @@ const Form = (props) => {
             className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm resize-none"
           ></textarea>
         </div>
+        {/* Status */}
         {type === "edit" && (
           <div className="mb-4">
             <label className="block text-md font-medium text-gray-700 mb-1">
@@ -188,6 +202,7 @@ const Form = (props) => {
             </select>
           </div>
         )}
+        {/* Due Date */}
         <div className="mb-4">
           <label
             htmlFor="dueDate"
@@ -212,6 +227,7 @@ const Form = (props) => {
           )}
         </div>
 
+        {/* Error */}
         {error && (
           <div className="flex flex-row items-center gap-1 mb-2">
             <MdErrorOutline className="text-md text-red-700" />
@@ -223,10 +239,12 @@ const Form = (props) => {
           {type === "add" ? "Add Task" : "Update Task"}
         </button>
       </form>
+
       <Link to="/home" className="text-blue-500 my-4 underline">
         <IoIosArrowRoundBack className="inline-block text-xl mr-1" />
         <span>Back to Home</span>
       </Link>
+      
     </>
   );
 };

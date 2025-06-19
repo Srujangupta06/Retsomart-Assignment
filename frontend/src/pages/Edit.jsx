@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import Form from "../components/Form";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const Edit = () => {
@@ -15,7 +14,7 @@ const Edit = () => {
         <h1 className="text-xl md:text-2xl font-semibold mb-6 text-gray-700">
           Update Task
         </h1>
-        {/*Form */}
+        {/*Form Container*/}
         <Form type="edit" taskInfo={taskInfo}/>
       </div>
     </div>

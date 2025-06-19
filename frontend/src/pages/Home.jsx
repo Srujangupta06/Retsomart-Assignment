@@ -12,6 +12,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const taskList = useSelector((store) => store.task);
  
+
+  // fetch tasks
   const fetchTasks = async () => {
     try {
       let url = `${
@@ -31,6 +33,7 @@ const Home = () => {
     }
   };
 
+  
   useEffect(() => {
     fetchTasks();
   }, [status,sortBy]);
