@@ -140,12 +140,12 @@ Note: I had installed nodemon globally, make sure to install nodemon before runn
 
 In /config/db.js
 
-  type: '',            -  DB Type
-  host: '',            -  Host name
-  port: 5432,          -  Default Port of DB Server
-  username: '',        -  DB USER NAME
-  password: '',        -  DB USER PASSWORD
-  database: '',        -  YOUR DB NAME
+  - type: '',            -  DB Type
+  - host: '',            -  Host name
+  - port: 5432,          -  Default Port of DB Server
+  - username: '',        -  DB USER NAME
+  - password: '',        -  DB USER PASSWORD
+  - database: '',        -  YOUR DB NAME
 
 # API 
 
