@@ -36,14 +36,14 @@ const Home = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center py-10 md:py-16 lg:py-16">
-      <div className="w-[90%] md:w-[80%] lg:w-[65%] mx-auto">
-        <h1 className="text-xl md:text-2xl font-semibold mb-6 text-gray-700">
+      <div className="w-[90%] md:w-[85%] lg:w-[70%] mx-auto">
+        <h1 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-gray-700">
           Manage Your Tasks
         </h1>
         {/*Filter Container */}
         <div className="flex flex-row items-center justify-between mb-6 flex-wrap">
           <button
-            className="flex flex-row items-center gap-2 cursor-pointer px-4 py-1.5 text-sm bg-blue-500 text-white rounded-sm"
+            className="mb-4 md:mb-0 lg:mb-0 flex flex-row items-center gap-2 cursor-pointer px-4 py-1.5 text-sm bg-blue-500 text-white rounded-sm"
             onClick={() => navigate("/add")}
           >
             <IoAddCircleOutline className="inline-block text-lg" />

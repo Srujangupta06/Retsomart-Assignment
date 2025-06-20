@@ -77,7 +77,7 @@ const TaskItem = ({ task }) => {
             showDescription
               ? "text-md text-blue-500 underline"
               : "text-lg text-gray-800"
-          } `}
+          } ${status === "done" ? "line-through" : ""}` }
         >
           {title}
         </h3>
@@ -143,7 +143,7 @@ const TaskItem = ({ task }) => {
         >
           {showDescription ? "View Less" : "View More"}
         </span>
-        <p
+        {status !== "done" && <p
           className={`text-md flex items-center gap-1 ${
             dueMessage === "Overdue" || dueMessage === "Due today"
               ? "text-red-700"
@@ -151,7 +151,7 @@ const TaskItem = ({ task }) => {
           }`}
         >
           <GoClockFill /> <span>{dueMessage}</span>
-        </p>
+        </p>}
       </div>
     </li>
   );

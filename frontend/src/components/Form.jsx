@@ -118,7 +118,7 @@ const Form = (props) => {
   return (
     <>
       <form
-        className="border border-gray-200 shadow-md w-[90%]md:w-[70%] lg:w-[50%] p-6 rounded-md"
+        className="border border-gray-200 shadow-md  p-6 rounded-md w-[100%] md:w-[500px]"
         onSubmit={onHandleFormSubmit}
         autoComplete="off"
       >
