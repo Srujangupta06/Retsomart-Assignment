@@ -32,8 +32,8 @@ const Form = (props) => {
 
       if (trimmedDesc.length < 10) {
         setError("Description must be at least 10 characters long");
-      } else if (trimmedDesc.length > 200) {
-        setError("Description must be less than 200 characters long");
+      } else if (trimmedDesc.length > 1000) {
+        setError("Description must be less than 1000 characters long");
       }
     }
 

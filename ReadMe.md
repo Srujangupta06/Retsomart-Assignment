@@ -1,4 +1,12 @@
 
+# Demo Video Google Drive Link: 
+
+- https://drive.google.com/file/d/1Prda9n_idHzERk7ShfjKbyD0QWmM8GoK/view?usp=sharing
+
+# GITHUB REPO LINK: 
+
+- https://github.com/Srujangupta06/Retsomart-Assignment
+
 # Frontend Setup 
 
 Using Vite Bundler

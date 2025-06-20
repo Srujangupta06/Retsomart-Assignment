@@ -22,8 +22,8 @@ const validateTodoCreation = (data) => {
       throw new Error("Description must be at least 10 characters long");
     }
 
-    if (trimmed.length > 200) {
-      throw new Error("Description must be less than 200 characters long");
+    if (trimmed.length > 1000) {
+      throw new Error("Description must be less than 1000 characters long");
     }
   }
 
@@ -56,8 +56,8 @@ const validateTodoUpdate = (data, res) => {
       throw new Error("Description must be at least 10 characters long");
     }
 
-    if (trimmed.length > 200) {
-      throw new Error("Description must be less than 200 characters long");
+    if (trimmed.length > 1000) {
+      throw new Error("Description must be less than 1000 characters long");
     }
   }
 
